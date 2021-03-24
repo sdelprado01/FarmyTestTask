@@ -8,11 +8,12 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonTakePicture"
+        android:id="@+id/buttonOpenCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="Take new picture"
+        android:onClick="btnOpenCamera"
         app:icon="@drawable/ic_photo_camera_24px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +27,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonTakePicture"
+        app:layout_constraintBottom_toTopOf="@+id/buttonOpenCamera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNewPictureTitle"
@@ -46,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imageButtonReturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
