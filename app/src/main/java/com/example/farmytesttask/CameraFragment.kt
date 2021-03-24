@@ -63,7 +63,7 @@ class CameraFragment : Fragment() {
     }
 
 
-
+/*
     @Throws(IOException::class)
     private fun createImageFile(): File {
         // Create an image file name
@@ -105,6 +105,8 @@ class CameraFragment : Fragment() {
             }
         }
     }
+
+ */
 
 
 
