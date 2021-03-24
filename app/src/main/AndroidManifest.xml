@@ -4,9 +4,9 @@
 
     <!-- Feature to allow the user use the camera in the application-->
     <uses-feature android:name="android.hardware.camera" android:required="true"></uses-feature>
-    <!-- Permission to save the pictures taken -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
+    <!-- Permission to save and load the pictures taken -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"  android:maxSdkVersion="18"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
