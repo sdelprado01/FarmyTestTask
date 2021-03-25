@@ -11,20 +11,20 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_mainFragment_to_cameraFragment"
-            app:destination="@id/cameraFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_collectionFragment"
             app:destination="@id/collectionFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_liveCameraFragment"
+            app:destination="@id/liveCameraFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/cameraFragment"
-        android:name="com.example.farmytesttask.CameraFragment"
-        android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" />
     <fragment
         android:id="@+id/collectionFragment"
         android:name="com.example.farmytesttask.CollectionFragment"
         android:label="fragment_collection"
         tools:layout="@layout/fragment_collection" />
+    <fragment
+        android:id="@+id/liveCameraFragment"
+        android:name="com.example.farmytesttask.LiveCameraFragment"
+        android:label="fragment_live_camera"
+        tools:layout="@layout/fragment_live_camera" />
 </navigation>

@@ -21,12 +21,10 @@ class MainFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
 
         //Naviagtion to Camera Fragment
-        val btnTakePictureNav = root.findViewById<View>(R.id.buttonTakePicture)
-        btnTakePictureNav.setOnClickListener { NavHostFragment.findNavController(this).navigate(R.id.action_mainFragment_to_cameraFragment) }
+        val btnTakePictureNav = root.findViewById<View>(R.id.imageButtonOpenCamera)
+        btnTakePictureNav.setOnClickListener { NavHostFragment.findNavController(this).navigate(R.id.action_mainFragment_to_liveCameraFragment) }
 
-        //Navigation to collection Fragment
-        val btnOpenCollectionNav = root.findViewById<View>(R.id.buttonOpenCollection)
-        btnOpenCollectionNav.setOnClickListener { NavHostFragment.findNavController(this).navigate(R.id.action_mainFragment_to_collectionFragment) }
+
 
 
         return root
