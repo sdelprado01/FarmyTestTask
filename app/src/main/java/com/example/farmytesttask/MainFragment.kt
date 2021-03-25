@@ -7,10 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MainFragment : Fragment() {
+
+    lateinit var recyclerViewCollection:RecyclerView
+    lateinit var imageList: List<ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +31,26 @@ class MainFragment : Fragment() {
         btnTakePictureNav.setOnClickListener { NavHostFragment.findNavController(this).navigate(R.id.action_mainFragment_to_liveCameraFragment) }
 
 
+        //initRecyclerView(root)
 
 
         return root
     }
 
+    /*
+    fun readGallery():List<ImageView>{
+
+    }
+
+     */
+
+    fun initRecyclerView(view: View){
+        recyclerViewCollection = view.findViewById(R.id.recyclerViewCollection)
+        recyclerViewCollection.layoutManager = LinearLayoutManager(context)
+
+        val adapter = CollectionAdapter(imageList)
+        recyclerViewCollection.adapter = adapter
+
+
+    }
 }

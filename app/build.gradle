@@ -1,7 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+
 }
+
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -44,7 +47,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:26.7.0')
+    //Firebase Ui
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
 
     //Fotoapparat
     implementation 'io.fotoapparat:fotoapparat:2.6.1'
