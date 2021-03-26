@@ -1,11 +1,10 @@
-package com.example.farmytesttask
+package com.example.farmytesttask.fragments
 
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,13 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.play.core.internal.u
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
+import androidx.navigation.fragment.NavHostFragment
+import com.example.farmytesttask.R
 import io.fotoapparat.Fotoapparat
 import io.fotoapparat.configuration.CameraConfiguration
 import io.fotoapparat.log.logcat
 import io.fotoapparat.log.loggers
 import io.fotoapparat.parameter.ScaleType
-import io.fotoapparat.result.WhenDoneListener
 import io.fotoapparat.selector.back
 import io.fotoapparat.selector.front
 import io.fotoapparat.selector.off
@@ -34,37 +31,32 @@ import java.util.*
 
 class LiveCameraFragment : Fragment() {
 
-    //Fotoaparat object
+    //Fotoapparat object
     lateinit var fotoapparat: Fotoapparat
 
-    var fotoapparatState : FotoapparatState? = null
-    var cameraStatus : CameraState? = null
-    var flashState: FlashState? = null
+    //Fotoapparat variables
+    private var fotoapparatState : FotoapparatState? = null
+    private var cameraStatus : CameraState? = null
+    private var flashState: FlashState? = null
 
-    private var permissions = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+    //Permissions needed
+    private var permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
 
     lateinit var flashImageView: ImageView
-
-    lateinit var mStorageReference:StorageReference
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_live_camera, container, false)
 
+        //Create the camera view
         createFotoapparat(root)
-
-        mStorageReference = FirebaseStorage.getInstance().getReference()
-
         cameraStatus = CameraState.BACK
         flashState = FlashState.OFF
         fotoapparatState = FotoapparatState.OFF
 
         flashImageView = root.findViewById(R.id.fab_flash)
 
+        //Buttons
         val btnTakePicture = root.findViewById<View>(R.id.fab_camera)
         val btnSwitchCamera = root.findViewById<View>(R.id.fab_switchCamera)
         val btnFlash = root.findViewById<View>(R.id.fab_flash)
@@ -73,10 +65,15 @@ class LiveCameraFragment : Fragment() {
         btnSwitchCamera.setOnClickListener { switchCamera() }
         btnFlash.setOnClickListener { changeFlashState() }
 
+        val btnReturn = root.findViewById<View>(R.id.fab_ReturnLiveCamera)
+        btnReturn.setOnClickListener{
+            NavHostFragment.findNavController(this).popBackStack()
+        }
+
         return root
     }
 
-
+    //Create camera view
     private fun createFotoapparat(view: View){
         val cameraView = view.findViewById<CameraView>(R.id.camera_view)
 
@@ -100,7 +97,7 @@ class LiveCameraFragment : Fragment() {
 
     //Turn on/off flash
     private fun changeFlashState() {
-        fotoapparat?.updateConfiguration(
+        fotoapparat.updateConfiguration(
                 CameraConfiguration(
                         flashMode = if (flashState == FlashState.TORCH) off() else torch()
                 )
@@ -118,7 +115,7 @@ class LiveCameraFragment : Fragment() {
 
     //Switch to frontal camera
     private fun switchCamera() {
-        fotoapparat?.switchTo(
+        fotoapparat.switchTo(
                 lensPosition = if (cameraStatus == CameraState.BACK) front() else back(),
                 cameraConfiguration = CameraConfiguration()
         )
@@ -132,16 +129,17 @@ class LiveCameraFragment : Fragment() {
     private fun takePhoto() {
         if (context?.let { hasNoPermissions(it) }!!) {
 
-            val permissions = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
             activity?.let { ActivityCompat.requestPermissions(it, permissions, 0) }
         }else{
-            println("Has all permissions!")
+
+            //Get default file route and save on Farmy directory
             val dir = File(context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Farmy")
             if(!dir.exists()) dir.mkdirs()
-            val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+            val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date()) //To identify the pictures
 
             fotoapparat.autoFocus().takePicture().saveToFile(File(dir, "$timeStamp.jpg"))
-            Toast.makeText(this.context, "Photo taken and uploaded to database", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.context, "Photo taken!", Toast.LENGTH_SHORT).show()
 
         }
     }
@@ -167,7 +165,7 @@ class LiveCameraFragment : Fragment() {
         if (context?.let { hasNoPermissions(it) }!!) {
             requestPermission()
         }else{
-            fotoapparat?.start()
+            fotoapparat.start()
             fotoapparatState = FotoapparatState.ON
         }
     }
@@ -194,7 +192,4 @@ enum class FlashState{
 enum class FotoapparatState{
     ON, OFF
 }
-
-
-
 }

@@ -1,16 +1,14 @@
-package com.example.farmytesttask
+package com.example.farmytesttask.adapters
 
 import android.net.Uri
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.common.internal.ServiceSpecificExtraArgs
+import com.example.farmytesttask.fragments.MainFragmentDirections
+import com.example.farmytesttask.R
 
 class CollectionAdapter(val imagesList: List<Uri>):RecyclerView.Adapter<CollectionAdapter.CollectionHolder>(){
 
@@ -26,20 +24,24 @@ class CollectionAdapter(val imagesList: List<Uri>):RecyclerView.Adapter<Collecti
         )
     }
 
-
+    //Bind holder actions
     override fun onBindViewHolder(holder: CollectionHolder, position: Int) {
         holder.imageView.setImageURI(imagesList[position])
-        holder.imageView.setOnClickListener{
+        holder.cardView.setOnClickListener {
             //Add navigation to imageView with position argument
+            val action = MainFragmentDirections.actionMainFragmentToImageFragment(position)
+            Navigation.findNavController(holder.imageView).navigate(action)
         }
     }
 
+    //Get list size
     override fun getItemCount(): Int {
         return imagesList.size
     }
 
-    class CollectionHolder(val view: View):RecyclerView.ViewHolder(view){
+    class CollectionHolder(view: View):RecyclerView.ViewHolder(view){
         val imageView:ImageView = view.findViewById(R.id.imageViewPicture)
+        val cardView = view.findViewById<View>(R.id.cardViewImage)
     }
 
 

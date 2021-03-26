@@ -7,58 +7,45 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.farmytesttask.MainFragment"
+        android:name="com.example.farmytesttask.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_mainFragment_to_collectionFragment"
-            app:destination="@id/collectionFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_liveCameraFragment"
             app:destination="@id/liveCameraFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/collectionFragment"
-        android:name="com.example.farmytesttask.CollectionFragment"
-        android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" >
         <action
-            android:id="@+id/action_collectionFragment_to_imageFragment"
+            android:id="@+id/action_mainFragment_to_imageFragment"
             app:destination="@id/imageFragment" />
     </fragment>
     <fragment
         android:id="@+id/liveCameraFragment"
-        android:name="com.example.farmytesttask.LiveCameraFragment"
+        android:name="com.example.farmytesttask.fragments.LiveCameraFragment"
         android:label="fragment_live_camera"
         tools:layout="@layout/fragment_live_camera" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.farmytesttask.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.farmytesttask.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/imageFragment"
-        android:name="com.example.farmytesttask.ImageFragment"
+        android:name="com.example.farmytesttask.fragments.ImageFragment"
         android:label="fragment_image"
         tools:layout="@layout/fragment_image" >
         <argument
             android:name="imagePosition"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_imageFragment_to_confirmDeleteDialog"
+            app:destination="@id/confirmDeleteDialog" />
     </fragment>
+    <dialog
+        android:id="@+id/confirmDeleteDialog"
+        android:name="com.example.farmytesttask.ConfirmDeleteDialog"
+        android:label="fragment_confirm_delete_dialog"
+        tools:layout="@layout/fragment_confirm_delete_dialog" >
+        <action
+            android:id="@+id/action_confirmDeleteDialog_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="imagePositionDialog"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </dialog>
 </navigation>

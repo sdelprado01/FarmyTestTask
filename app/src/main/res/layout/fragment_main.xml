@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment">
+    android:background="@drawable/gradient_background"
+    tools:context=".fragments.MainFragment">
 
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -36,7 +37,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Farmy test task"
+                android:text="My Gallery"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -47,20 +48,9 @@
                 android:id="@+id/imageButtonOpenCamera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:backgroundTint="@android:color/white"
                 android:src="@drawable/ic_photo_camera_24px"
-                app:layout_constraintBottom_toBottomOf="@+id/imageButtonMoreOptions"
-                app:layout_constraintEnd_toStartOf="@+id/imageButtonMoreOptions"
-                app:layout_constraintTop_toTopOf="@+id/imageButtonMoreOptions" />
-
-            <ImageButton
-                android:id="@+id/imageButtonMoreOptions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@android:color/white"
-                android:src="@drawable/ic_more_vert_24px"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +64,7 @@
         android:id="@+id/recyclerViewCollection"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:layout_margin="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
