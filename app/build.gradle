@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+
 }
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 30
@@ -40,9 +44,19 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:26.7.0')
+    //Firebase Ui
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
+
+    //Fotoapparat
+    implementation 'io.fotoapparat:fotoapparat:2.7.0'
 
     //Material components
     implementation 'com.google.android.material:material:1.3.0'
@@ -61,4 +75,5 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:1.0.0-alpha08"
+
 }

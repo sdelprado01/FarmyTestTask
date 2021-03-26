@@ -7,24 +7,45 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.farmytesttask.MainFragment"
+        android:name="com.example.farmytesttask.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_mainFragment_to_cameraFragment"
-            app:destination="@id/cameraFragment" />
+            android:id="@+id/action_mainFragment_to_liveCameraFragment"
+            app:destination="@id/liveCameraFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_collectionFragment"
-            app:destination="@id/collectionFragment" />
+            android:id="@+id/action_mainFragment_to_imageFragment"
+            app:destination="@id/imageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/cameraFragment"
-        android:name="com.example.farmytesttask.CameraFragment"
-        android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" />
+        android:id="@+id/liveCameraFragment"
+        android:name="com.example.farmytesttask.fragments.LiveCameraFragment"
+        android:label="fragment_live_camera"
+        tools:layout="@layout/fragment_live_camera" />
     <fragment
-        android:id="@+id/collectionFragment"
-        android:name="com.example.farmytesttask.CollectionFragment"
-        android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" />
+        android:id="@+id/imageFragment"
+        android:name="com.example.farmytesttask.fragments.ImageFragment"
+        android:label="fragment_image"
+        tools:layout="@layout/fragment_image" >
+        <argument
+            android:name="imagePosition"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_imageFragment_to_confirmDeleteDialog"
+            app:destination="@id/confirmDeleteDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/confirmDeleteDialog"
+        android:name="com.example.farmytesttask.dialogs.ConfirmDeleteDialog"
+        android:label="fragment_confirm_delete_dialog"
+        tools:layout="@layout/fragment_confirm_delete_dialog" >
+        <action
+            android:id="@+id/action_confirmDeleteDialog_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="imagePositionDialog"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </dialog>
 </navigation>
