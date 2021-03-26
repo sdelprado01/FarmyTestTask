@@ -37,7 +37,7 @@
     </fragment>
     <dialog
         android:id="@+id/confirmDeleteDialog"
-        android:name="com.example.farmytesttask.ConfirmDeleteDialog"
+        android:name="com.example.farmytesttask.dialogs.ConfirmDeleteDialog"
         android:label="fragment_confirm_delete_dialog"
         tools:layout="@layout/fragment_confirm_delete_dialog" >
         <action

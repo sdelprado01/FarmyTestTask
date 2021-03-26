@@ -2,6 +2,7 @@ package com.example.farmytesttask.adapters
 
 import android.net.Uri
 import android.view.LayoutInflater
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,9 +10,9 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.farmytesttask.fragments.MainFragmentDirections
 import com.example.farmytesttask.R
+import javax.security.auth.callback.Callback
 
-class CollectionAdapter(val imagesList: List<Uri>):RecyclerView.Adapter<CollectionAdapter.CollectionHolder>(){
-
+class CollectionAdapter(private val imagesList: List<Uri>):RecyclerView.Adapter<CollectionAdapter.CollectionHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -41,8 +42,10 @@ class CollectionAdapter(val imagesList: List<Uri>):RecyclerView.Adapter<Collecti
 
     class CollectionHolder(view: View):RecyclerView.ViewHolder(view){
         val imageView:ImageView = view.findViewById(R.id.imageViewPicture)
-        val cardView = view.findViewById<View>(R.id.cardViewImage)
+        val cardView = view.findViewById<View>(R.id.cardViewImage)!!
     }
+
+
 
 
 }

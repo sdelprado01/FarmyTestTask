@@ -65,6 +65,7 @@ class LiveCameraFragment : Fragment() {
         btnSwitchCamera.setOnClickListener { switchCamera() }
         btnFlash.setOnClickListener { changeFlashState() }
 
+        //Return button
         val btnReturn = root.findViewById<View>(R.id.fab_ReturnLiveCamera)
         btnReturn.setOnClickListener{
             NavHostFragment.findNavController(this).popBackStack()

@@ -1,4 +1,4 @@
-package com.example.farmytesttask
+package com.example.farmytesttask.dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
+import com.example.farmytesttask.R
 import com.example.farmytesttask.viewmodel.ViewModel
 import java.io.File
 
@@ -31,11 +32,12 @@ class ConfirmDeleteDialog : DialogFragment() {
         //Confirm delete button
         btnConfirmDeleteImage.setOnClickListener {
             if(viewmodel.deleteImage(imageLocation)) {
+                Toast.makeText(context, "Image deleted", Toast.LENGTH_SHORT).show()
                 NavHostFragment.findNavController(this)
                     .navigate(R.id.action_confirmDeleteDialog_to_mainFragment)
-                Toast.makeText(context, "Image deleted ${imageLocation.path}", Toast.LENGTH_SHORT).show()
+
             }else{
-                Toast.makeText(context, "Image not deleted ${imageLocation.path}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Image not deleted", Toast.LENGTH_SHORT).show()
             }
         }
 

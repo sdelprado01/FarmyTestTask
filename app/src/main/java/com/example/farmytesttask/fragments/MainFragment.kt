@@ -2,6 +2,7 @@ package com.example.farmytesttask.fragments
 
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,15 +33,20 @@ class MainFragment : Fragment() {
         val btnTakePictureNav = root.findViewById<View>(R.id.imageButtonOpenCamera)
         btnTakePictureNav.setOnClickListener { NavHostFragment.findNavController(this).navigate(R.id.action_mainFragment_to_liveCameraFragment) }
 
-        //Create recyclerView
-        initRecyclerView(root)
-
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Thread(Runnable {
+            activity?.runOnUiThread {
+                initRecyclerView(view)
+            }
+        }).start()
+    }
 
     //Create recyclerview with images from directory
     private fun initRecyclerView(view: View){
+        //Create recyclerView
         recyclerViewCollection = view.findViewById(R.id.recyclerViewCollection)
         recyclerViewCollection.layoutManager = GridLayoutManager(context, 3)
 
@@ -49,5 +55,4 @@ class MainFragment : Fragment() {
         recyclerViewCollection.adapter = adapter
 
     }
-
 }

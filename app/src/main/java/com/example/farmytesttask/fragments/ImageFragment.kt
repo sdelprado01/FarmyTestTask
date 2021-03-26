@@ -16,7 +16,7 @@ import com.example.farmytesttask.viewmodel.ViewModel
 class ImageFragment : Fragment() {
 
     //Take viewmodel
-    val viewmodel: ViewModel by activityViewModels()
+    private val viewmodel: ViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
